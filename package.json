@@ -8,7 +8,7 @@
   },
   "scripts": {
     "allureReport": "profile=normal codeceptjs run --plugins allure && allure serve output",
-    "chrome": "profile=normal codeceptjs run --steps --grep @ui",
+    "pins": "profile=normal codeceptjs run --steps --grep @save-pin-ui",
     "firefox": "profile=local codeceptjs run --reporter mochawesome",
     "api": "profile=api codeceptjs run --steps --grep @api"
   },
@@ -24,6 +24,7 @@
     "webdriverio": "^5.13.2"
   },
   "dependencies": {
+    "@wdio/cli": "^5.14.3",
     "@wdio/selenium-standalone-service": "^5.13.2",
     "axios": "^0.19.0",
     "casual": "^1.6.2",

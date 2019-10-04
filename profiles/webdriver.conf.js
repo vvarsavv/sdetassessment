@@ -7,7 +7,7 @@ module.exports = {
     chrome: {
         url: 'http://localhost',
         browser: "chrome",
-        restart: true,
+        restart: false,
         waitForTimeout: 5000,
         host: process.env.HOST,
         coloredLogs: true
@@ -15,7 +15,7 @@ module.exports = {
     firefox: {
         url: "http://localhost",
         browser: "firefox",
-        restart: true,
+        restart: false,
         waitForTimeout: 5000,
         host: process.env.HOST,
         coloredLogs: true

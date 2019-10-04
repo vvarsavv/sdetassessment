@@ -4,20 +4,42 @@ exports.config = {
   tests: './*/*/*_test.js',
   output: './output',
   helpers: {
-    WebDriver: webDriverConfig.loadProfile(),
-    REST: {},
+      WebDriver: webDriverConfig.loadProfile(),
+        REST: {
+          'Content-Type': 'application/x-www-form-urlencoded', 'x-li-format': 'json'
+        },
+      MyHelper: {
+          require: './helpers/custom_helper/myHelper.js'
+      }
   },
   plugins: {
-    wdio: {
-      enabled: true,
-      services: ['selenium-standalone']
+      wdio: {
+          enabled: true,
+          services: ['selenium-standalone']
     },
-    allure: {
-      enableScreenshotDiffPlugin: true,
-    },
-    screenshotOnFail: {
-      enabled: true
-    }
+      allure: {
+          enableScreenshotDiffPlugin: true,
+      },
+      screenshotOnFail: {
+          enabled: true
+      },
+      autoDelay: {
+          enabled: true,
+          delayBefore: 500,
+          delayAfter: 500,
+      },
+      autologin: {
+          enabled: true,
+          saveToFile: false,
+          inject: 'login',
+          users: {
+              user: {
+                  login: (I) => I.loginUser(),
+                  // fetch: () => {},
+
+              }
+          }
+      }
   },
   include: {
     I: './steps_file.js',
@@ -30,16 +52,13 @@ exports.config = {
     // pages
     createBoard: './helpers/pages/createBoard.js',
     createPins: './helpers/pages/createPins.js',
-
-    // steps
-    loginSteps: './helpers/steps/loginSteps.js'
   },
   bootstrap: null,
   mocha: {
-    // reporterOptions: {
-    //   reportDir: './output',
-    //   reportFilename: 'pnterest sdet assessment'
-    // }
+    reporterOptions: {
+      reportDir: './output',
+      reportFilename: 'pinterest sdet assessment'
+    }
   },
   name: 'sdetassessment'
 };
