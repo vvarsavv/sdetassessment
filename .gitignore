@@ -92,3 +92,4 @@ typings/
 # Others
 .idea
 output
+./helpers/data/
