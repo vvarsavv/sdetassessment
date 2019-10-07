@@ -1,15 +1,21 @@
 Feature('Add pins to board test');
 
-BeforeSuite((I, domains) => {
-    I.say('Running UI testing suite on: ' + domains.PINTEREST_URL.domain);
+BeforeSuite(async function (I, domains, login) {
+    I.say('Running UI testing suite on: ' + `${domains.PINTEREST_URL.domain}`);
+    await login('user');
 });
 
-Before( (I, loginSteps, userData, domains) => {
-    I.amOnPage(domains.PINTEREST_URL.domain);
-    loginSteps.sendLoginForm(userData.USER.MYUSERNAME.username, userData.USER.MYUSERNAME.password);
+Before( async function (login, createBoard) {
 });
 
-Scenario('Pinterest grab number of pins test', async function  (I, createPins) {
-    await createPins.savePinToBoard();
-    pause();
-}).tag('@ui');
+Scenario('Pinterest save a pin to a new board', async function  (I, createPins) {
+    await createPins.savePinToNewBoardFromUI();
+}).tag('@save-pin-ui');
+
+Scenario('Pinterest save a pin to a random board', async function  (I, createPins) {
+    await createPins.savePinToBoardFromUI();
+}).tag('@save-pin-ui');
+
+Scenario('Pinterest delete a random pin from a board', async function  (I, createPins) {
+    await createPins.deleteRandomPinInBoardFromUI();
+}).tag('@save-pin-ui');

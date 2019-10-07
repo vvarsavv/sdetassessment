@@ -10,7 +10,13 @@ module.exports = {
         restart: false,
         waitForTimeout: 5000,
         host: process.env.HOST,
-        coloredLogs: true
+        coloredLogs: true,
+        keepCookies: true,
+        windowSize: '1280x1024',
+        timeouts: {
+            "script": 60000,
+            "page load": 10000
+        }
     },
     firefox: {
         url: "http://localhost",

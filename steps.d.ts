@@ -1,5 +1,5 @@
 
-type ICodeceptCallback = (i?: CodeceptJS.I, current?:any, ...args: any) => void;
+type ICodeceptCallback = (i?: CodeceptJS.I, current?:any, apiData?:CodeceptJS.apiData, userData?:CodeceptJS.userData, domains?:CodeceptJS.domains, createBoard?:CodeceptJS.createBoard, createPins?:CodeceptJS.createPins, ...args: any) => void;
 
 declare class FeatureConfig {
   retry(times: number): FeatureConfig
@@ -249,6 +249,11 @@ declare function AfterSuite(callback: ICodeceptCallback): void;
 
 declare function inject(): {
   I: CodeceptJS.I
+  apiData: CodeceptJS.apiData
+  userData: CodeceptJS.userData
+  domains: CodeceptJS.domains
+  createBoard: CodeceptJS.createBoard
+  createPins: CodeceptJS.createPins
 };
 declare function locate(selector: LocatorOrString): Locator;
 declare function within(selector: LocatorOrString, callback: Function): Promise<any>;
@@ -368,11 +373,17 @@ declare namespace CodeceptJS {
     runInWeb(fn: Function) : void,
     debug(msg: string) : void,
     debugSection(section: string, msg: string) : void,
+    setRequestTimeout(newTimeout: string) : void,
+    sendGetRequest(url: string, headers?: string) : void,
+    sendPostRequest(url: string, payload?: string, headers?: string) : void,
+    sendPatchRequest(url: string, payload: string, headers?: string) : void,
+    sendPutRequest(url: string, payload?: string, headers?: string) : void,
+    sendDeleteRequest(url: string, headers?: string) : void,
+    loginUser() : void,
     say: () => any; 
     retryStep(opts: string) : void,
 
   }
-
 }
 
 declare module "codeceptjs" {

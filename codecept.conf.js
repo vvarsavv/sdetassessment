@@ -1,13 +1,13 @@
 const webDriverConfig = require('./profiles/webdriver.conf'); // reading selenium config from separate file
+const userData = require('./helpers/data/userData.js');
+const domains = require('./helpers/data/domains.js');
 
 exports.config = {
   tests: './*/*/*_test.js',
   output: './output',
   helpers: {
       WebDriver: webDriverConfig.loadProfile(),
-        REST: {
-          'Content-Type': 'application/x-www-form-urlencoded', 'x-li-format': 'json'
-        },
+        REST: {},
       MyHelper: {
           require: './helpers/custom_helper/myHelper.js'
       }
@@ -19,6 +19,9 @@ exports.config = {
     },
       allure: {
           enableScreenshotDiffPlugin: true,
+      },
+      retryFailedStep: {
+          enabled: true,
       },
       screenshotOnFail: {
           enabled: true
@@ -35,8 +38,7 @@ exports.config = {
           users: {
               user: {
                   login: (I) => I.loginUser(),
-                  // fetch: () => {},
-
+                  check: (I) => {I.seeElement('[aria-label="Saved"]')},
               }
           }
       }

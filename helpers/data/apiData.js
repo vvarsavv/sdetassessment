@@ -5,8 +5,8 @@ module.exports = {
     TOKEN: '<token>',
 
     CALLS: {
-        ME: 'me/',
-        BOARDS: 'boards/',
+        ME: '/me/',
+        BOARDS: '/boards/',
         PINS: '/pins/',
         SECTIONS: '/sections/'
     }

@@ -92,4 +92,5 @@ typings/
 # Others
 .idea
 output
-./helpers/data/
+helpers/data
+package-lock.json
