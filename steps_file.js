@@ -20,6 +20,7 @@ module.exports = function() {
       this.fillField(this.fields.loginForm('email'), userData.USER.MYUSERNAME.username);
       this.fillField(this.fields.loginForm('password'), userData.USER.MYUSERNAME.password);
       this.click(this.button.submit);
+      this.say(`User ${userData.USER.MYUSERNAME.username} is logged in`);
     },
   });
 };
