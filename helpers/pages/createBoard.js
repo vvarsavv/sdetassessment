@@ -8,14 +8,21 @@ module.exports = {
         plusIcon: '[aria-label*="Profile"]', // add locator to custom_helper -> aria-label is common in create pins
         profileIcon: '[aria-label*="Saved"]',
         createBoard: '[title*="Create board"]',
+        saveButton: '[data-test-id*="SaveButton"]',
         createBoardWindow: '[aria-label="Create"]', // add locator to custom_helper -> aria-label is common in create pins
-        dataID: (name) => `[data-test-id="${name}"]`,
+        dataID: (name) => `[data-test-id*="${name}"]`,
 
-        boardsTitle: '[data-test-id="boardWithoutSection"] [title]',
-        boardsList: (list) => `[data-test-id="boardWithoutSection"] [title="${list}"]`,
+        boardsTitle: '[data-test-id*="Section"] [title]',
+        boardsList: (list) => `[data-test-id*="Section"] [title="${list}"]`,
 
         userProfileBoards: '[class="UserProfileContent"] [data-test-id]',
         profileBoardsList: (testId) => `[class="UserProfileContent"] [data-test-id="${testId}"]`,
+        loaders: '[aria-label*="Loading"]',
+        textLocator: (text) => `//*[contains(text(), "${text}")]`,
+        boardTitle: (title) => `[title="${title}"]`
+        //Loading home feed
+        //Loading
+        //[data-test-id*="Section"]
 
     },
 
@@ -37,21 +44,22 @@ module.exports = {
             name: eval(JSON.stringify(postRequest.data.name))
         };
 
-        postRequest.status === HttpStatus.CREATED ? I.say('New user board created: ' + `${retrieveDataFromPostRequest.name}`) : I.failTest(retrieveDataFromPostRequest.message);
+        postRequest.status === HttpStatus.CREATED ? I.say('New user board created: ' + `${retrieveDataFromPostRequest.name}`) : I.say(retrieveDataFromPostRequest.message);
 
+        return {
+            postStatus: postRequest.status
+        }
         //  Name should be less than 180 characters
         //  Invalid board name.
     },
 
     /**
-     * deletes a board via the api call
+     * Deletes a board via the api call
      */
     deleteUserBoardViaAPI: async function(boardNameToDelete) {
-        const deleteUserBoardApiURL = `${apiData.PINTEREST_API_URL}${apiData.CALLS.BOARDS}${userData.USER.MYUSERNAME.profileURL}${boardNameToDelete}?access_token=${apiData.TOKEN}`;
+        const deleteUserBoardApiURL = `${apiData.PINTEREST_API_URL}${apiData.CALLS.BOARDS}${userData.USER.MYUSERNAME.profileURL}/${boardNameToDelete}/?access_token=${apiData.TOKEN}`;
         const deleteRequest = await I.sendDeleteRequest(deleteUserBoardApiURL);
-
-        deleteRequest.status === HttpStatus.GONE ? I.say('User board deleted: ' + `${boardNameToDelete}`) : I.failTest();
-
+        deleteRequest.status === HttpStatus.GONE ? I.say('User board deleted: ' + `${boardNameToDelete}`) : I.failTest(`${deleteRequest.status}`);
     },
 
     /**
@@ -59,12 +67,14 @@ module.exports = {
      */
     getUserBoardListViaAPI: async function () {
         const userBoardURL = `${apiData.PINTEREST_API_URL}${apiData.CALLS.ME}${apiData.CALLS.BOARDS}?access_token=${apiData.TOKEN}`;
-        //insert check that api is active
-
         const getUserBoardsResponse = await I.sendGetRequest(userBoardURL);
-        const retrieveUserBoardsData = JSON.stringify(getUserBoardsResponse.data);
-
-        I.say(retrieveUserBoardsData);
+        const retrieveUserBoardsData = {
+            message: getUserBoardsResponse.data.message,
+            url: getUserBoardsResponse.data.data.url,
+            name: getUserBoardsResponse.data.data.name
+        };
+        I.say(retrieveUserBoardsData.url)
+        // retrieveUserBoardsData.status === HttpStatus.OK ? I.say(retrieveUserBoardsData.url) : I.failTest(retrieveUserBoardsData.message);
     },
 
     /**
@@ -76,22 +86,40 @@ module.exports = {
 
     /**
      * add a board from the main page
+     *
      */
-    addBoardFromMainPageFromUI() {
+    addBoardFromMainPageFromUI(boardName) {
+        this.clickOnProfileFromUI();
         I.waitForVisible(this.locators.plusIcon);
         I.click(this.locators.plusIcon);
         I.click(this.locators.createBoard);
-        this.createNewBoardFromPinFromUI();
+        I.fillField(this.form.boardName, `${boardName}`);
+        I.click(this.form.submit);
+
+        this.assertBoardExistsFromUI(`${boardName}`);
+        //todo: assertion of board creation
+    },
+
+    /**
+     * Asserts that a boards exists via UI
+     * @param boardName = string
+     */
+    assertBoardExistsFromUI(boardName) {
+        this.clickOnProfileFromUI();
+        I.see(`${boardName}`)
     },
 
     /**
      * create a new board from selected pin
      */
-    createNewBoardFromPinFromUI() {
+    createNewBoardFromPinFromUI(boardName) {
         I.waitForElement(this.locators.dataID('create-board'));
         I.click(this.locators.dataID('create-board'));
-        I.fillField(this.form.boardName, casual.title);
+        I.fillField(this.form.boardName, `${boardName}`);
         I.click(this.form.submit);
+        this.assertBoardExistsFromUI(`${boardName}`);
+
+        //todo: assert board title creation
     },
 
     /**
@@ -100,8 +128,12 @@ module.exports = {
     numberOfBoardsListFromUI: async function () {
         let listOfBoards = await I.grabAttributeFrom(this.locators.boardsTitle, 'title');
         let filterBoards = listOfBoards.toString().split(',')[Math.floor(Math.random() * 3) + 1];     // add to customer_helper
-        I.click(this.locators.boardsList(filterBoards));
-        I.say('Board name clicked: '`${filterBoards}`);
+        I.click(this.locators.boardsList(`${filterBoards}`));
+        I.say(`Board name clicked: ${filterBoards}`);
+
+        return {
+            filteredBoard: filterBoards
+        }
     },
 
     /**
@@ -109,10 +141,21 @@ module.exports = {
      * @param numberOfBoards = number
      * numberOfBoards = is number of possible results
      */
-    clickOnRandomBoardFromUI: async function (numberOfBoards) {
+    clickOnRandomBoardFromUI: async function () {
         this.clickOnProfileFromUI();
         let listProfileBoards = await I.grabAttributeFrom(this.locators.userProfileBoards, 'data-test-id');
-        let filterBoards = listProfileBoards.toString().split(',')[Math.floor(Math.random() * numberOfBoards) + 1];     // add to customer_helper
-        I.click(this.locators.profileBoardsList(filterBoards));
-    }
+        const boardsRandomiser = await I.randomiser(3,1);
+        const seperator = await I.seperator(listProfileBoards);
+        const filterBoards = await seperator[boardsRandomiser];
+
+        I.click(this.locators.profileBoardsList(`${filterBoards}`));
+    },
+
+    // createBoardViaAPIorUI: async function() {
+    //     const userBoardViaApi = await this.createUserBoardViaAPI();
+    //
+    //     if (userBoardViaApi.postStatus === HttpStatus.TOO_MANY_REQUESTS)
+    //     {
+    //         await this.addBoardFromMainPageFromUI();
+    //     }
 };

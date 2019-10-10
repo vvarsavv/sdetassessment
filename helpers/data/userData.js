@@ -1,12 +1,14 @@
+const yourUserDetails = require('../../yourDetails');
+
 module.exports = {
 
     USER: {
         MYUSERNAME: {
-            username: '<username>',
-            password: '<password>',
-            profileURL: '<profileURL>',
-            firstName: '<name>',
-            lastName: '<surname>',
+            username: yourUserDetails.enterYourDetails().yourUsername,
+            password: yourUserDetails.enterYourDetails().yourPassword,
+            firstName: yourUserDetails.enterYourDetails().yourName,
+            lastName: yourUserDetails.enterYourDetails().yourSurname,
+            profileURL: yourUserDetails.enterYourDetails().yourProfileURL,
         },
         INVALIDDETAILS: {
             username: '',

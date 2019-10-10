@@ -13,19 +13,52 @@ class MyHelper extends Helper {
 
     /**
      *
+     * @param pins
+     */
+    async seperator(pins) {
+        return pins.toString().split(',');
+    };
+
+    /**
+     *
+     * @param max
+     * @param min
+     */
+    async randomiser(max, min) {
+        return Math.floor(Math.random() * max) + min;
+    };
+
+    /**
+     * Title creator for board, section and pin names
+     * @returns {{sectionTitle: *}}
+     */
+    createTitleForForm() {
+        const title = casual.title;
+        const invalidTitle = casual.random_value({invalid1: '$$$$$', invalid2: '%%%%%', invalid3: '@@@@@'});
+        const description = casual.description;
+        return {
+            titleName: title,
+            titleInvalid: invalidTitle,
+            description: description
+        }
+    };
+
+     /**
+     *
      * @returns {{note: *, image_url: *, name: *, description: *, title: *}}
      */
     parameterDetails() {
-        const name = this.replaceSpaceEncodedForm(casual.title);
-        const title = this.replaceSpaceEncodedForm(casual.title);
-        const description = this.replaceSpaceEncodedForm(casual.words(5));
+        const name =  this.replaceSpaceEncodedForm(casual.title);
+        const title =  this.replaceSpaceEncodedForm(casual.title);
+        const description =  this.replaceSpaceEncodedForm(casual.words(5));
         const note = this.replaceSpaceEncodedForm(casual.sentence);
-        return {
-            name: name,
-            title: title,
-            description: description,
-            note: note,
-            image_url: coolImages.one()
+        const imgURL = coolImages.one(600,800);
+         return {
+             name: name,
+             title: title,
+             description: description,
+             note: note,
+             image_url: imgURL
         }
     };
 

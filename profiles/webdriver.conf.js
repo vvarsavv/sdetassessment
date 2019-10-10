@@ -1,3 +1,6 @@
+const adBlockPlus = require('adblock-plus-crx');
+
+
 module.exports = {
     profiles : {
         chrome: 'chrome',
@@ -16,6 +19,9 @@ module.exports = {
         timeouts: {
             "script": 60000,
             "page load": 10000
+        },
+        chromeOptions: {
+            extensions: adBlockPlus
         }
     },
     firefox: {

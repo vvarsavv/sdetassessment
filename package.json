@@ -8,8 +8,8 @@
   },
   "scripts": {
     "allureReport": "profile=chrome codeceptjs run --plugins allure && allure serve output",
-    "pins": "profile=chrome codeceptjs run --steps --grep @save-pin-ui",
-    "boards": "profile=chrome codeceptjs run --reporter mochawesome",
+    "pins": "profile=chrome codeceptjs run --steps --grep @pins-ui-tests",
+    "boards": "profile=chrome codeceptjs run --steps --grep @boards-ui-tests",
     "api": "profile=api codeceptjs run --steps --grep @api",
     "debug": "profile=chrome codeceptjs run --steps --verbose --grep @save-pin-ui"
   },
@@ -27,6 +27,7 @@
   "dependencies": {
     "@wdio/cli": "^5.14.3",
     "@wdio/selenium-standalone-service": "^5.13.2",
+    "adblock-plus-crx": "^2.1.2",
     "axios": "^0.19.0",
     "casual": "^1.6.2",
     "chai": "^4.2.0",

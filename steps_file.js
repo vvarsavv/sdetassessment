@@ -8,6 +8,9 @@ module.exports = function() {
 
     fields: {
       loginForm: (form) => `[id*="${form}"]`,
+      ariaLabel: (label) => `[aria-label*="${label}"]`,
+      loaders: '[aria-label*="Loading"]'
+
     },
     button: {
       login: '[data-test-id="login-button"] [type="button"]',
@@ -21,6 +24,7 @@ module.exports = function() {
       this.fillField(this.fields.loginForm('password'), userData.USER.MYUSERNAME.password);
       this.click(this.button.submit);
       this.say(`User ${userData.USER.MYUSERNAME.username} is logged in`);
+      this.waitForElement(this.fields.loaders, 5);
     },
   });
 };

@@ -1,11 +1,12 @@
+const tokenDetails = require('../../yourDetails');
 
 module.exports = {
 
-    PINTEREST_API_URL: 'https://api.pinterest.com/v1/',
-    TOKEN: '<token>',
+    PINTEREST_API_URL: 'https://api.pinterest.com/v1',
+    TOKEN: tokenDetails.enterYourDetails().apiToken,
 
     CALLS: {
-        ME: '/me/',
+        ME: '/me',
         BOARDS: '/boards/',
         PINS: '/pins/',
         SECTIONS: '/sections/'

@@ -1,9 +1,7 @@
 const webDriverConfig = require('./profiles/webdriver.conf'); // reading selenium config from separate file
-const userData = require('./helpers/data/userData.js');
-const domains = require('./helpers/data/domains.js');
 
 exports.config = {
-  tests: './*/*/*_test.js',
+  tests: './*/*/*_tests.js',
   output: './output',
   helpers: {
       WebDriver: webDriverConfig.loadProfile(),
@@ -22,14 +20,15 @@ exports.config = {
       },
       retryFailedStep: {
           enabled: true,
+          retries: 2
       },
       screenshotOnFail: {
           enabled: true
       },
       autoDelay: {
           enabled: true,
-          delayBefore: 500,
-          delayAfter: 500,
+          delayBefore: 600,
+          delayAfter: 800,
       },
       autologin: {
           enabled: true,
@@ -38,7 +37,6 @@ exports.config = {
           users: {
               user: {
                   login: (I) => I.loginUser(),
-                  check: (I) => {I.seeElement('[aria-label="Saved"]')},
               }
           }
       }
@@ -54,6 +52,7 @@ exports.config = {
     // pages
     createBoard: './helpers/pages/createBoard.js',
     createPins: './helpers/pages/createPins.js',
+    createSections: './helpers/pages/createSections.js'
   },
   bootstrap: null,
   mocha: {
