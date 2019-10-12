@@ -8,6 +8,7 @@
   },
   "scripts": {
     "allureReport": "profile=chrome codeceptjs run --plugins allure && allure serve output",
+    "allTests": "profile=chrome codeceptjs run  --steps --grep \"\\@boards-ui-tests|\\@pins-ui-tests\"",
     "pins": "profile=chrome codeceptjs run --steps --grep @pins-ui-tests",
     "boards": "profile=chrome codeceptjs run --steps --grep @boards-ui-tests",
     "api": "profile=api codeceptjs run --steps --grep @api",

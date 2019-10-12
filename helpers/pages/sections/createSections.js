@@ -1,12 +1,10 @@
 'use strict';
 const casual = require('casual');
-const {I, createBoard, createPins} = inject();
+const {I, boardsNavigation, createPins} = inject();
 
 module.exports = {
 
     locators: {
-        dataID: (name) => `[data-test-id="${name}"]`,
-        ariaLabel: (label) => `[aria-label*="${label}"]`,
         sectionTitleAttributes: '[role="button"] h5[title]',
         sectionTitle: (title) => `h5[title="${title}"]`
 
@@ -33,7 +31,7 @@ module.exports = {
      */
     createSectionFromUI: async function () {
         const sectionName = await I.parameterDetails();
-        await createBoard.clickOnRandomBoardFromUI();
+        await boardsNavigation.clickOnRandomBoardFromUI();
         I.click(this.locators.ariaLabel('Board Actions'));
         I.click(this.locators.dataID('addSection'));
         I.waitForElement(this.locators.ariaLabel('Add a section to the board'));

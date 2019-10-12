@@ -34,12 +34,16 @@ class MyHelper extends Helper {
      */
     createTitleForForm() {
         const title = casual.title;
-        const invalidTitle = casual.random_value({invalid1: '$$$$$', invalid2: '%%%%%', invalid3: '@@@@@'});
+        const invalidCharacters = casual.random_value({invalid1: '$$$$$', invalid2: '%%%%%', invalid3: '@@@@@'});
+        const invalidNewTitle = casual.words(50);
         const description = casual.description;
+        const invalidDescription = casual.words(100);
         return {
             titleName: title,
-            titleInvalid: invalidTitle,
-            description: description
+            invalidCharacters: invalidCharacters,
+            invalidNewTitle: invalidNewTitle,
+            description: description,
+            invalidDescription: invalidDescription,
         }
     };
 

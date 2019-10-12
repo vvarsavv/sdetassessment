@@ -27,15 +27,16 @@ exports.config = {
       },
       autoDelay: {
           enabled: true,
-          delayBefore: 600,
+          delayBefore: 800,
           delayAfter: 800,
+          methods: ["click", "fillField", "waitForEnabled"]
       },
       autologin: {
           enabled: true,
           saveToFile: false,
           inject: 'login',
           users: {
-              user: {
+              myUsername: {
                   login: (I) => I.loginUser(),
               }
           }
@@ -50,9 +51,21 @@ exports.config = {
     domains: './helpers/data/domains.js',
 
     // pages
-    createBoard: './helpers/pages/createBoard.js',
-    createPins: './helpers/pages/createPins.js',
-    createSections: './helpers/pages/createSections.js'
+      commonLocators: './helpers/pages/commonLocators.js',
+
+      //pins
+      createNewPin: './helpers/pages/pins/createNewPin.js',
+      deletePin: './helpers/pages/pins/deletePin.js',
+      pinsNavigation: './helpers/pages/pins/pinsNavigation.js',
+      savePins: './helpers/pages/pins/savePins.js',
+
+      //boards
+      createNewBoard: './helpers/pages/boards/createNewBoard.js',
+      boardsApiCalls: './helpers/pages/boards/boardsApiCalls.js',
+      boardsNavigation: './helpers/pages/boards/boardsNavigation.js',
+
+      //sections
+      createSections: './helpers/pages/sections/createSections.js'
   },
   bootstrap: null,
   mocha: {

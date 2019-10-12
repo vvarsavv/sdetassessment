@@ -16,6 +16,7 @@ module.exports = {
         coloredLogs: true,
         keepCookies: true,
         windowSize: '1280x1024',
+        smartWait: 5000,
         timeouts: {
             "script": 60000,
             "page load": 10000
