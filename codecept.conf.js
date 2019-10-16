@@ -1,4 +1,5 @@
 const webDriverConfig = require('./profiles/webdriver.conf'); // reading selenium config from separate file
+const domains = require('./helpers/data/domains');
 
 exports.config = {
   tests: './*/*/*_tests.js',
@@ -38,8 +39,19 @@ exports.config = {
           users: {
               myUsername: {
                   login: (I) => I.loginUser(),
-              }
+              },
+              check: (I) => {
+                  I.amOnPage(domains.PINTEREST_URL.domain);
+                  I.see('Kris');
+              },
+              fetch: () => {}, // empty function
+              restore: () => {}, // empty funciton
           }
+      },
+      customLocator: {
+          enabled: true,
+          showActual: true,
+          attribute: "data-test-id"
       }
   },
   include: {
@@ -55,7 +67,6 @@ exports.config = {
 
       //pins
       createNewPin: './helpers/pages/pins/createNewPin.js',
-      deletePin: './helpers/pages/pins/deletePin.js',
       pinsNavigation: './helpers/pages/pins/pinsNavigation.js',
       savePins: './helpers/pages/pins/savePins.js',
 

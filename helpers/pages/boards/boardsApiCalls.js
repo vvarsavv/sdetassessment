@@ -45,8 +45,10 @@ module.exports = {
             name: getUserBoardsResponse.data.data.name
         };
 
-        retrieveUserBoardsData.status === HttpStatus.OK ? I.say(retrieveUserBoardsData.name) : I.failTest(retrieveUserBoardsData.message);
 
-        return { boardName : retrieveUserBoardsData.name, boardURL : retrieveUserBoardsData.url}
+
+        // retrieveUserBoardsData.status === HttpStatus.OK ? I.say(retrieveUserBoardsData.name) : I.failTest(retrieveUserBoardsData.message);
+
+        return { boardName : retrieveUserBoardsData.name, boardURL : retrieveUserBoardsData.url, errorMessage: retrieveUserBoardsData.message}
     },
 };

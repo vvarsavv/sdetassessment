@@ -10,7 +10,6 @@ class MyHelper extends Helper {
   // add custom methods here
   // If you need to access other helpers
   // use: this.helpers['helperName']
-
     /**
      *
      * @param pins
@@ -20,9 +19,10 @@ class MyHelper extends Helper {
     };
 
     /**
-     *
-     * @param max
-     * @param min
+     * Returns a random number between min and max
+     * The max is inclusive and the min is also inclusive
+     * @param {number} max
+     * @param {number} min
      */
     async randomiser(max, min) {
         return Math.floor(Math.random() * max) + min;
@@ -30,7 +30,6 @@ class MyHelper extends Helper {
 
     /**
      * Title creator for board, section and pin names
-     * @returns {{sectionTitle: *}}
      */
     createTitleForForm() {
         const title = casual.title;
@@ -49,7 +48,6 @@ class MyHelper extends Helper {
 
      /**
      *
-     * @returns {{note: *, image_url: *, name: *, description: *, title: *}}
      */
     parameterDetails() {
         const name =  this.replaceSpaceEncodedForm(casual.title);

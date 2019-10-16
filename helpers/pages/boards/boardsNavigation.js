@@ -1,6 +1,5 @@
 'use strict';
-const HttpStatus = require('http-status-codes');
-const {I, apiData, createPins, userData} = inject();
+const {I} = inject();
 
 module.exports = {
 
@@ -10,9 +9,7 @@ module.exports = {
         boardsTitle: '[data-test-id*="Section"] [title]',
         userProfileBoards: '[class*="UserProfileContent"] [data-test-id]',
         boardTitle: (title) => `[title="${title}"]`,
-
         textLocator: (text) => `//*[contains(text(), "${text}")]`,
-
     },
 
     /**
@@ -58,16 +55,17 @@ module.exports = {
 
     /**
      * clicks on a random board from user's profile
+     * {number} numberOfBoards - enter number of boards
      */
-    clickOnRandomBoardFromUserProfile: async function () {
+    clickOnRandomBoardFromUserProfile: async function (numberOfBoards) {
         this.clickOnProfileFromUI();
         I.waitForVisible(this.locators.userProfileBoards);
         const listProfileBoards = await I.grabAttributeFrom(this.locators.userProfileBoards, 'data-test-id');
-        const boardsRandomiser = await I.randomiser(3,1);
+        const boardsRandomiser = await I.randomiser(numberOfBoards,1);
         const seperator = await I.seperator(listProfileBoards);
         const filterBoards = await seperator[boardsRandomiser];
-
-        I.click(this.locators.boardTitle(filterBoards));
+        // I.click({xpath: "[data-test-id="+ filterBoards});
+        I.click( `$${filterBoards}`);
         I.say(`Board name clicked: ${filterBoards}`);
     },
 };

@@ -1,6 +1,6 @@
 'use strict';
 
-const {I, boardsNavigation, commonLocators, createNewPin} = inject();
+const {I, boardsNavigation, commonLocators} = inject();
 
 module.exports = {
 
@@ -37,9 +37,7 @@ module.exports = {
         I.click(boardsNavigation.locators.createBoard);
         I.fillField(this.form.boardName, boardName);
         I.click(this.form.submit);
-
-        //todo: assertion of board creation
-    },
+        },
 
     /**
      * enter invalid characters as board name
@@ -56,13 +54,12 @@ module.exports = {
      * create a new board from selected pin
      */
     createNewBoardFromPinFromUI(boardName) {
-        I.waitForElement(commonLocators.dataTestID('create-board'));
-        I.click(commonLocators.dataTestID('create-board'));
+        I.waitForElement('$create-board');
+        I.click('$create-board');
         I.fillField(this.form.boardName, boardName);
         I.click(this.form.submit);
 
         boardsNavigation.assertBoardExistsFromUI(boardName);
-        //todo: assert board title creation
     },
 
     // createBoardViaAPIorUI: async function() {
