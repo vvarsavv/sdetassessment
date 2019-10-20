@@ -7,10 +7,9 @@
     "url": "git+https://github.com/vvarsavv/sdetassessment.git"
   },
   "scripts": {
-    "allureReport": "profile=chromeSelenoid codeceptjs run --plugins allure && allure serve output",
-    "boards": "profile=chrome codeceptjs run --steps --grep @boards-ui-tests",
-    "pins": "profile=chrome codeceptjs run --steps --grep @pins-ui-tests",
-    "selenoid": "profile=firefoxSelenoid codeceptjs run --steps --grep @boards-ui-tests",
+    "boards": "profile=chrome codeceptjs run --steps --grep @boards-ui-tests --plugins allure && allure serve output",
+    "pins": "profile=chrome codeceptjs run --steps --grep @pins-ui-tests --plugins allure && allure serve output",
+    "selenoid": "profile=firefoxSelenoid codeceptjs run --steps --grep @boards-ui-tests --plugins allure && allure serve output",
     "debug": "profile=chrome codeceptjs run --steps --verbose --grep @pins-ui-tests"
   },
   "keywords": [],

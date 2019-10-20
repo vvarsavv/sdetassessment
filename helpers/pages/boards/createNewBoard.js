@@ -1,5 +1,5 @@
 'use strict';
-
+const HttpStatus = require('http-status-codes');
 const {I, boardsNavigation, savePins, boardsApiCalls} = inject();
 
 module.exports = {
@@ -18,7 +18,7 @@ module.exports = {
 
     formVerification: {
         frmInvalidParameter: 'Invalid parameters. You are required to have at least one letter or number in a board name',
-        frmEnterNoMore: 'Please enter no more than 180 characters.'
+        frmEnterNoMore: 'Please enter no more than 50 characters.'
     },
 
     /**
@@ -60,7 +60,7 @@ module.exports = {
         I.see(this.formVerification.frmInvalidParameter);
         I.clearField(this.form.frmBoardName);
         I.fillField(this.form.frmBoardName, invalidDetails.invalidNewTitle);
-        I.see(this.form.frmEnterNoMore);
+        I.see(this.formVerification.frmEnterNoMore);
     },
 
     /**

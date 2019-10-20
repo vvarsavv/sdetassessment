@@ -25,10 +25,6 @@ exports.config = {
       allure: {
           enableScreenshotDiffPlugin: true,
       },
-      retryFailedStep: {
-          enabled: true,
-          retries: 2
-      },
       screenshotOnFail: {
           enabled: true
       },
