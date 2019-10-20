@@ -1,20 +1,34 @@
-const {domains, userData, commonLocators} = inject();
+const {domains, userData, pinsNavigation} = inject();
 
 module.exports = function() {
   return actor({
 
-    // Define custom steps here, use 'this' to access default methods of I.
-    // It is recommended to place a general 'login' function here.
+    form: {
+      frmEmail: 'email',
+      frmPassword: 'password'
+    },
 
-    loginUser: function() {
+    button: {
+      btnLogin: '$login-button',
+      btnSubmit: '$registerFormSubmitButton'
+    },
+
+    label: {
+      lblLoader: '~Loading'
+    },
+
+    loginUser: async function() {
       this.amOnPage(domains.PINTEREST_URL.domain);
-      this.click('$login-button');
-      this.fillField({id: 'email'}, userData.USER.MYUSERNAME.username);
-      this.fillField({id: 'password'}, userData.USER.MYUSERNAME.password);
-      this.click('$registerFormSubmitButton');
+      this.click(this.button.btnLogin);
+      this.wait(5);
+      this.fillField({id: this.form.frmEmail}, userData.USER.MYUSERNAME.username);
+      this.wait(5);
+      this.fillField({id: this.form.frmPassword}, userData.USER.MYUSERNAME.password);
+      this.wait(5);
+      this.click(this.button.btnSubmit);
       this.say(`User ${userData.USER.MYUSERNAME.username} is logged in`);
-      this.waitForInvisible('~Loading');
-      this.waitForVisible('~Pins from people you follow', 10);
+      this.waitForInvisible(this.label.lblLoader);
+      pinsNavigation.verifyElementsInMainPage();
     },
   });
 };

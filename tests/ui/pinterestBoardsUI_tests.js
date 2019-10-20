@@ -1,23 +1,26 @@
 Feature('Pinterest Boards tests');
 
-BeforeSuite(async function (I, domains) {
+BeforeSuite(async function (I, domains, login) {
     I.say(`Running UI testing suite on: ${domains.PINTEREST_URL.domain}`);
-});
-
-Before(async function (login) {
     await login('myUsername');
 });
 
-Scenario('Boards tests: Add new boards', async function  (I, boardsNavigation, login, createNewBoard) {
+Before(async function (login, boardsNavigation) {
     boardsNavigation.clickOnProfileFromUI();
-    await createNewBoard.addNumberOfBoardsFromUI();
+});
+
+Scenario('Boards tests: Add new boards', async function  (I, createNewBoard) {
+    await createNewBoard.addNumberOfBoardsFromUI(3);
 }).tag('@boards-ui-tests');
 
-//negative test
-
-Scenario('Boards tests: Enter invalid characters as board name', async function  (I, boardsNavigation, createNewBoard) {
-    boardsNavigation.clickOnProfileFromUI();
+Scenario('Boards tests: Enter invalid characters as board name', async function  (I, createNewBoard) {
     await createNewBoard.invalidBoardNameDetails();
 }).tag('@boards-ui-tests');
 
-//AZUd_nuE2Wgnj2xazqemXl-sBXni-XQmwgJkY0kYf523G43MsnUYI7RqpnISOQyBOMJjkeihyEA0mGkz94m3wIs todo pins with promoted (not:underlineLink)
+Scenario('Boards tests: Edit board details', async function  (I, editBoard) {
+    await editBoard.enterValidDetails();
+}).tag('@boards-ui-tests');
+
+Scenario('Boards tests: Edit board details with invalid details', async function  (I, editBoard) {
+    await editBoard.enterInvalidDetails();
+}).tag('@boards-ui-tests');

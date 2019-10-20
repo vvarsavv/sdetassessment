@@ -4,7 +4,6 @@ const adBlockPlus = require('adblock-plus-crx');
 module.exports = {
     profiles : {
         chrome: 'chrome',
-        api: 'api',
         chromeSelenoid: 'chromeSelenoid',
         firefoxSelenoid: 'firefoxSelenoid',
         operaSelenoid: 'operaSelenoid'
@@ -17,7 +16,7 @@ module.exports = {
         host: process.env.HOST,
         coloredLogs: true,
         keepCookies: true,
-        windowSize: '1280x1024',
+        windowSize: '1920x1080',
         smartWait: 10000,
         timeouts: {
             "script": 60000,
@@ -27,26 +26,10 @@ module.exports = {
             extensions: adBlockPlus
         }
     },
-    api: {
-        url: "http://localhost",
-        browser: "chrome",
-        restart: true,
-        waitForTimeout: 5000,
-        host: process.env.HOST,
-        coloredLogs: true,
-        desiredCapabilities: {
-            chromeOptions: {
-                args: [
-                    "--headless",
-                    "--disable-gpu",
-                    "--lang=en"
-                ]
-            }
-        }
-    },
     chromeSelenoid: {
         url: 'http://localhost',
         browser: 'chrome',
+        windowSize: '1920x1080',
         restart: false,
         version: '77.0',
         keepCookies: true,
@@ -65,6 +48,7 @@ module.exports = {
     firefoxSelenoid: {
         url: 'http://localhost',
         browser: 'firefox',
+        windowSize: '1920x1080',
         restart: false,
         version: '69.0',
         keepCookies: true,
@@ -80,6 +64,7 @@ module.exports = {
     operaSelenoid: {
         url: 'http://localhost',
         browser: 'opera',
+        windowSize: '1920x1080',
         restart: false,
         version: '63.0',
         keepCookies: true,
@@ -98,8 +83,6 @@ module.exports = {
         switch(profile) {
             case this.profiles.chrome:
                 return this.chrome;
-            case this.profiles.api:
-                return this.api;
             case this.profiles.chromeSelenoid:
                 return this.chromeSelenoid;
             case this.profiles.firefoxSelenoid:

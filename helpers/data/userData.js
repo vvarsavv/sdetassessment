@@ -10,9 +10,5 @@ module.exports = {
             lastName: yourUserDetails.enterYourDetails().yourSurname,
             profileURL: yourUserDetails.enterYourDetails().yourProfileURL,
         },
-        INVALIDDETAILS: {
-            username: '',
-            password: '',
-        }
     }
 };

@@ -1,72 +1,75 @@
 const Helper = codeceptjs.helper;
 const casual = require('casual');
+const sentencer = require('sentencer');
 const coolImages = require('cool-images');
 const expect = require('chai').expect;
+
 
 const {I} = inject();
 
 class MyHelper extends Helper {
 
-  // add custom methods here
-  // If you need to access other helpers
-  // use: this.helpers['helperName']
-    /**
-     *
-     * @param pins
+     /**
+     * Split a string into substrings using the specified separator and return them as an array
+     * @param {String} stringToSplit - string to be split
+     * @param {String} separator - character for splitting the string, if omitted the entire string will be returned
+     * @return {Array}
      */
-    async seperator(pins) {
-        return pins.toString().split(',');
+    async splitString(stringToSplit, separator) {
+        return stringToSplit.toString().split(separator);
     };
 
     /**
-     * Returns a random number between min and max
-     * The max is inclusive and the min is also inclusive
-     * @param {number} max
-     * @param {number} min
+     * Generate random number
+     * @param {Number} min
+     * @param {Number} max
+     * @return {Number}
      */
-    async randomiser(max, min) {
-        return Math.floor(Math.random() * max) + min;
+    async getRandomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min - 1)) + min;
     };
 
     /**
-     * Title creator for board, section and pin names
+     * Generate random details for forms
+     * @return {Object} { titleName, invalidCharacters, invalidNewTitle, description, invalidDescription }
      */
-    createTitleForForm() {
-        const title = casual.title;
+    generateDetailsForForm() {
+        const title = sentencer.make("{{ a_noun }}");
         const invalidCharacters = casual.random_value({invalid1: '$$$$$', invalid2: '%%%%%', invalid3: '@@@@@'});
         const invalidNewTitle = casual.words(50);
         const description = casual.description;
         const invalidDescription = casual.words(100);
+        const imgURL = coolImages.one(600,800);
         return {
             titleName: title,
             invalidCharacters: invalidCharacters,
             invalidNewTitle: invalidNewTitle,
             description: description,
             invalidDescription: invalidDescription,
+            image: imgURL
         }
     };
 
      /**
-     *
+     * Generate random details for API calls
+     * @return {Object} { name, title, description, note, imgURL }
      */
-    parameterDetails() {
+    generateContentForAPI() {
         const name =  this.replaceSpaceEncodedForm(casual.title);
         const title =  this.replaceSpaceEncodedForm(casual.title);
         const description =  this.replaceSpaceEncodedForm(casual.words(5));
         const note = this.replaceSpaceEncodedForm(casual.sentence);
-        const imgURL = coolImages.one(600,800);
          return {
              name: name,
              title: title,
              description: description,
              note: note,
-             image_url: imgURL
         }
     };
 
     /**
      * Replaces all spaces(‘ ‘) with URL-encoded form (%20)
-     * @param text = string
+     * @param {String} text
      */
     replaceSpaceEncodedForm(text) {
         return text.replace(/ /g, '%20');
@@ -74,7 +77,7 @@ class MyHelper extends Helper {
 
     /**
      * Fail a test with reason
-     * @param reason = string
+     * @param {String} reason
      */
     failTest(reason) {
         expect.fail('Test Failed due to: '+ reason);

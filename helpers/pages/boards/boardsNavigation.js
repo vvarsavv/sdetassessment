@@ -3,69 +3,81 @@ const {I} = inject();
 
 module.exports = {
 
-    locators: {
-        createBoard: '[title*="Create board"]',
-        saveButton: '[data-test-id*="SaveButton"]',
-        boardsTitle: '[data-test-id*="Section"] [title]',
-        userProfileBoards: '[class*="UserProfileContent"] [data-test-id]',
-        boardTitle: (title) => `[title="${title}"]`,
-        textLocator: (text) => `//*[contains(text(), "${text}")]`,
+    button: {
+        btnBoardsSelection: '$board-selection', //locators by ID are the best locators as its custom made by the QA and devs (it should never change)
+        btnSaved: '~Saved',
+        btnBoardTitle: (title) => `[title="${title}"]`,
+        btnCreateBoard: '[title*="Create board"]',
+        btnBoardsTitle: '[data-test-id*="Section"] [title]',
+        btnUserProfileBoards: '[class*="UserProfileContent"] [title]'
+    },
+    text: {
+        txtBoardName: (text) => `//div[text()="${text}"]`,
     },
 
     /**
      * clicks on profile icon in main-page
      */
     clickOnProfileFromUI() {
-        I.click('~Saved');
+        I.click(this.button.btnSaved);
     },
-
 
     /**
      * Asserts that a boards exists via UI
-     * @param boardName = string
+     * @param {String} boardName
      */
     assertBoardExistsFromUI(boardName) {
-        I.see(boardName)
+        I.waitForText(boardName);
+        I.see(boardName);
     },
 
     /**
-     *
-     * @param listOfUserBoards
+     * grab number of boards from user's profile
+     * @param {String} listOfUserBoards
      */
-    grabNumberOfBoardsFromUI: async function (listOfUserBoards) {
-        const boardsRandomiser = await I.randomiser(3,1);
-        const seperator = await I.seperator(listOfUserBoards);
-        const filterBoards = await seperator[boardsRandomiser];
+    grabNumberOfBoardsFromUI: async function () {
 
-        I.click(this.locators.boardTitle(filterBoards));
+        const listOfUserBoards = await I.grabAttributeFrom(this.button.btnBoardsTitle, 'title');
+        const grabNumberOfBoardNames = await I.grabNumberOfVisibleElements(this.button.btnBoardsTitle);
+        const boardsRandomiser = await I.getRandomNumber(1, grabNumberOfBoardNames);
+        const splitString = await I.splitString(listOfUserBoards, ',');
+        const filterBoards = await splitString[boardsRandomiser];
+        I.click(this.button.btnBoardTitle(filterBoards));
         I.say(`Board name clicked: ${filterBoards}`);
 
-        return {
-            filteredBoard: filterBoards
-        }
-    },
-
-    /**
-     * grab and list the number of boards from selected pin
-     */
-    numberOfBoardsListFromUI: async function () {
-        const listOfUserBoards = await I.grabAttributeFrom(this.locators.boardsTitle, 'title');
-        await this.grabNumberOfBoardsFromUI(listOfUserBoards)
+        return {filterBoardsName: filterBoards};
     },
 
     /**
      * clicks on a random board from user's profile
-     * {number} numberOfBoards - enter number of boards
+     * @return {String} filterBoardsName
      */
-    clickOnRandomBoardFromUserProfile: async function (numberOfBoards) {
+    clickOnRandomBoardFromUserProfile: async function () {
         this.clickOnProfileFromUI();
-        I.waitForVisible(this.locators.userProfileBoards);
-        const listProfileBoards = await I.grabAttributeFrom(this.locators.userProfileBoards, 'data-test-id');
-        const boardsRandomiser = await I.randomiser(numberOfBoards,1);
-        const seperator = await I.seperator(listProfileBoards);
-        const filterBoards = await seperator[boardsRandomiser];
-        // I.click({xpath: "[data-test-id="+ filterBoards});
-        I.click( `$${filterBoards}`);
+
+        const listProfileBoards = await I.grabAttributeFrom(this.button.btnUserProfileBoards, 'title');
+        const boardsRandomiser = await I.getRandomNumber(1, 2);
+        const splitString = await I.splitString(listProfileBoards, ',');
+        const filterBoards = await splitString[boardsRandomiser];
+
+        I.waitForElement(this.button.btnBoardTitle(filterBoards));
+        I.click(this.button.btnBoardTitle(filterBoards));
         I.say(`Board name clicked: ${filterBoards}`);
+
+        return {filterBoardsName: filterBoards}
+    },
+
+    /**
+     * clicks on a random board in the edit window
+     */
+    clickRandomBoardFromEditWindow: async function() {
+        const grabBoardNames = await I.grabTextFrom(this.button.btnBoardsSelection);
+        const boardsRandomiser = await I.getRandomNumber(1, 2);
+        const splitString = await I.splitString(grabBoardNames, ',');
+        const filterBoards = await splitString[boardsRandomiser];
+        I.click(this.text.txtBoardName(filterBoards));
+
+        return {filterBoardsNameEditWindow: filterBoards}
     },
 };
+//todo readme.md

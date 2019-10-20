@@ -11,6 +11,12 @@ exports.config = {
           require: './helpers/custom_helper/myHelper.js'
       }
   },
+    multiple: {
+        parallel: {
+            chunks: 1,
+            browsers: ["chrome"]
+        }
+    },
   plugins: {
       wdio: {
           enabled: true,
@@ -29,8 +35,8 @@ exports.config = {
       autoDelay: {
           enabled: true,
           delayBefore: 800,
-          delayAfter: 800,
-          methods: ["click", "fillField", "waitForEnabled"]
+          delayAfter: 900,
+          methods: ["click", "fillField", "waitForEnabled", "waitForElement", "waitForVisible", "waitForInvisible"]
       },
       autologin: {
           enabled: true,
@@ -38,14 +44,8 @@ exports.config = {
           inject: 'login',
           users: {
               myUsername: {
-                  login: (I) => I.loginUser(),
+                  login: async (I) => I.loginUser(),
               },
-              check: (I) => {
-                  I.amOnPage(domains.PINTEREST_URL.domain);
-                  I.see('Kris');
-              },
-              fetch: () => {}, // empty function
-              restore: () => {}, // empty funciton
           }
       },
       customLocator: {
@@ -55,15 +55,12 @@ exports.config = {
       }
   },
   include: {
-    I: './steps_file.js',
+      I: './steps_file.js',
 
-    // data
-    apiData: './helpers/data/apiData.js',
-    userData: './helpers/data/userData.js',
-    domains: './helpers/data/domains.js',
-
-    // pages
-      commonLocators: './helpers/pages/commonLocators.js',
+      // data
+      apiData: './helpers/data/apiData.js',
+      userData: './helpers/data/userData.js',
+      domains: './helpers/data/domains.js',
 
       //pins
       createNewPin: './helpers/pages/pins/createNewPin.js',
@@ -74,9 +71,8 @@ exports.config = {
       createNewBoard: './helpers/pages/boards/createNewBoard.js',
       boardsApiCalls: './helpers/pages/boards/boardsApiCalls.js',
       boardsNavigation: './helpers/pages/boards/boardsNavigation.js',
+      editBoard: './helpers/pages/boards/editBoard.js',
 
-      //sections
-      createSections: './helpers/pages/sections/createSections.js'
   },
   bootstrap: null,
   mocha: {

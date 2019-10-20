@@ -7,12 +7,10 @@
     "url": "git+https://github.com/vvarsavv/sdetassessment.git"
   },
   "scripts": {
-    "allureReport": "profile=chrome codeceptjs run --plugins allure && allure serve output",
-    "allTests": "profile=chromeSelenoid codeceptjs run --steps --grep \"\\@boards-ui-tests|\\@pins-ui-tests\"",
-    "pins": "profile=chrome codeceptjs run --steps --grep @pins-ui-tests",
+    "allureReport": "profile=chromeSelenoid codeceptjs run --plugins allure && allure serve output",
     "boards": "profile=chrome codeceptjs run --steps --grep @boards-ui-tests",
-    "api": "profile=api codeceptjs run --steps --grep @api",
-    "selenoid": "profile=chromeSelenoid codeceptjs run --steps --grep @boards-ui-tests",
+    "pins": "profile=chrome codeceptjs run --steps --grep @pins-ui-tests",
+    "selenoid": "profile=firefoxSelenoid codeceptjs run --steps --grep @boards-ui-tests",
     "debug": "profile=chrome codeceptjs run --steps --verbose --grep @pins-ui-tests"
   },
   "keywords": [],
@@ -35,6 +33,7 @@
     "chai": "^4.2.0",
     "cool-images": "^1.0.3",
     "http-status-codes": "^1.3.2",
-    "mochawesome": "^4.1.0"
+    "mochawesome": "^4.1.0",
+    "sentencer": "^0.2.0"
   }
 }
