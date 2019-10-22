@@ -62,6 +62,7 @@ npm install
 ## Usage
 
 Project Structure:
+```
 │
 ├───helpers/
 │   ├───custom_helper/
@@ -98,6 +99,7 @@ Project Structure:
 ├───steps.d.ts
 ├───steps_file.js
 └───yourLoginDetails.js
+```
 
 In order to run tests, first enter your Pinterest account details in the 'yourLoginDetails.js' file.
 
