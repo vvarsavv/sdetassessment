@@ -40,7 +40,7 @@ module.exports = {
      * @return {String} listOfUserBoards
      */
     grabNumberOfBoardsFromUI: async function () {
-        const listOfUserBoards = await I.grabAttributeFrom(this.button.btnBoardsTitle,  this.locator.lblTitle);
+        const listOfUserBoards = await I.grabAttributeFrom(this.button.btnBoardsTitle,  'title');
         const grabNumberOfBoardNames = await I.grabNumberOfVisibleElements(this.button.btnBoardsTitle);
         const boardsRandomiser = await I.getRandomNumber(1, grabNumberOfBoardNames);
         const splitString = await I.splitString(listOfUserBoards, ',');
