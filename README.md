@@ -1,13 +1,5 @@
 # Pinterest SDET Assesment
 
-## Table of Contents
-- Installation
-- Issues during implementation
-
-### Installation
-
-### Issues during implementation
-
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
 
@@ -15,7 +7,7 @@
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
-* [Usage](#usage)
+* [Project Structure](#project-structure)
   * [Issues during implementation](#issues)
 * [License](#license)
 
@@ -31,6 +23,7 @@
 
 To get a local copy up and running follow the instructions below:
 
+<!-- prerequisites -->
 ### Prerequisites
 
 * Java: 
@@ -58,10 +51,8 @@ git clone https://github.com/vvarsavv/sdetassessment.git
 npm install
 ```
 
-<!-- USAGE -->
-## Usage
-
-Project Structure:
+<! -- PROJECT STRUCTURE -->
+## Project Structure
 ```
 │
 ├───helpers/
