@@ -1,4 +1,4 @@
-# Pinterest SDET Assesment
+# Pinterest SDET Assessment
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
@@ -17,12 +17,29 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Pinterest UI tests implementation via the [CodeceptJS framework](https://codecept.io/) which covers functionalities such as:
+Pinterest UI tests implementation via the [CodeceptJS framework](https://codecept.io/) that makes use of features found in the latest version of the framework such as:
+
+* Custom locators - Custom locators can be defined by defining attributes of elements. One such example is the custom locators plugin:
+```
+customLocator: {
+   enabled: true,
+   showActual: true,
+   attribute: "data-test-id"
+   }
+```
+
+* Selenoid - Selenoid is an implementation of the Selenium hub using Docker containers to launch browsers such as Chrome, Firefox, Opera and Edge/IE. 
+
+* Page objects as classes - Page objects can be declared as classes which can be inherited to other page objects.
+
+In this assessment some of the UI tests covered are:
+
 * Moving pins from one board to another
 * Adding pins to boards
 * Creating new pins
 * Creating new boards
 * Validations of error messages
+
 
 <!-- GETTING STARTED -->
 ## Getting Started
@@ -42,7 +59,8 @@ To get a local copy up and running follow the instructions below:
 > https://www.docker.com/products/docker-desktop
 
 * Selenoid: 
-> https://aerokube.com/selenoid/latest/
+> https://aerokube.com/selenoid/
+
 > https://aerokube.com/cm/
 
 <!-- Installation -->
@@ -56,6 +74,9 @@ git clone https://github.com/vvarsavv/sdetassessment.git
 ```sh
 npm install
 ```
+* Selenoid installation (OPTIONAL)
+
+
 
 <!-- PROJECT STRUCTURE -->
 ## Project Structure
@@ -103,7 +124,7 @@ Helpers
 * custom_helper -> In myHelpers.js 
 * data -> The data folder holds info related to the Pinterest's URL (domains.js), Pinterest's API URL and boards, pins and sections calls (apiData.js). The user data which is used for logging to Pinterest, and gathered from yourLoginDetails, is located in userData.js    
 * pages──boards -> The boards' page objects are located in this folder. Page objects' methods are separated depending on their use.
-* pages──pins -> The pins' page objects are located in this folder. Each of hte page objects' methods are found here, depending on their use.
+* pages──pins -> The pins' page objects are located in this folder. Each of the page objects' methods are found here, depending on their use.
 
 Profiles -> Profiles are found in webdriver.conf.js. Profile config values related to browsers can be changed on the fly, such as:
 > windowSize: '1920x1080'
@@ -123,17 +144,54 @@ yourLoginDetails.js -> Pinterest user account details are located here.
 
 In order to run tests, first enter your Pinterest account details in the 'yourLoginDetails.js' file.
 
+```
+yourUsername: '<username>',
+yourPassword: '<password>',
+yourName: '<name>',
+yourSurname: '<surname>',
+yourProfileURL: '<profileURL>',
+
+apiToken: '<apiToken>' (optional - requires a Pinterest APP)
+```
 
 
+![Scripts](https://github.com/vvarsavv/sdetassessment/blob/master/helpers/data/image/scripts-package.png "Scripts in package.json")
+
+Boards tests can be launched with the following script:
+```
+npm run boards
+```
+
+Pins test can be launched with the following script:
+ ``` 
+npm run pins
+ ```
+ 
+Boards or pin tests can be launched on Chrome, Firefox or Opera with Selenoid. Selenoid is a modern way to run Selenium inside Docker containers:
+ ```
+npm run selenoid
+ ```
+ 
+Debugging can be performed via the debug script:
+```
+ npm run debug
+ ```
+ 
 <!-- issues -->
 ### Issues during implementation
 
 Flaky UI Tests:
 
-- Element not appearing after a number of seconds:
- ```
- element ([class="gridCentered"]) still not enabled after 5 sec
- ```
+- Elements not appearing after a number of seconds. The autoDelay plugin was used to minimise such issues.
+
+```
+autoDelay: {
+   enabled: true,
+   delayBefore: 800,
+   delayAfter: 900,
+   methods: ["click", "fillField", "waitForEnabled", "waitForElement", "waitForVisible", "waitForInvisible"]
+   }, 
+```
 
 API calls limit:
 
@@ -146,7 +204,7 @@ API calls limit:
 
 ReCaptcha:
 
-Login caused issues related to login
+A fast login caused ReCaptcha to be shown during tests. The autoDelay plugin was used to minimise issues related to login before each test scenario. 
 
 <!-- LICENSE -->
 ## License
