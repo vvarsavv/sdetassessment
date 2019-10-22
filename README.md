@@ -52,6 +52,9 @@ To get a local copy up and running follow the instructions below:
 * Java: 
 > https://www.java.com/en/download/
 
+* Java SE Development Kit:
+> https://www.oracle.com/technetwork/java/javase/downloads/jdk13-downloads-5672538.html
+
 * Node: 
 > https://nodejs.org/
 
