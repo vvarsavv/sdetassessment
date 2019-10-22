@@ -116,12 +116,13 @@ package.json -> dependencies and scripts are located in this file.
 
 steps_file.js -> login steps are located in this file.
 
-yourLoginDetails -> Pinterest user account details are located here.
+yourLoginDetails.js -> Pinterest user account details are located here.
 
 <!-- executing-tests -->
 ## Executing tests
 
 In order to run tests, first enter your Pinterest account details in the 'yourLoginDetails.js' file.
+
 
 
 <!-- issues -->
