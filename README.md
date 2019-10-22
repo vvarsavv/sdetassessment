@@ -144,6 +144,17 @@ yourLoginDetails.js -> Pinterest user account details are located here.
 
 In order to run tests, first enter your Pinterest account details in the 'yourLoginDetails.js' file.
 
+```
+yourUsername: '<username>',
+yourPassword: '<password>',
+yourName: '<name>',
+yourSurname: '<surname>',
+yourProfileURL: '<profileURL>',
+
+apiToken: '<apiToken>' (optional - requires a Pinterest APP)
+```
+
+
 ![Scripts](https://github.com/vvarsavv/sdetassessment/blob/master/helpers/data/image/scripts-package.png "Scripts in package.json")
 
 Boards tests can be launched with the following script:
