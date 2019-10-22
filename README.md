@@ -1,4 +1,4 @@
-# Pinterest SDET Assesment
+# Pinterest SDET Assessment
 
 <!-- TABLE OF CONTENTS -->
 ## Table of Contents
