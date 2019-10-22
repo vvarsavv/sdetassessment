@@ -21,11 +21,11 @@ Pinterest UI tests implementation via the [CodeceptJS framework](https://codecep
 
 * Custom locators - Custom locators can be defined by defining attributes of elements. One such example is the custom locators plugin:
 ```
-      customLocator: {
-          enabled: true,
-          showActual: true,
-          attribute: "data-test-id"
-      }
+customLocator: {
+   enabled: true,
+   showActual: true,
+   attribute: "data-test-id"
+   }
 ```
 
 * Selenoid - Selenoid is an implementation of the Selenium hub using Docker containers to launch browsers such as Chrome, Firefox, Opera and Edge/IE. 
@@ -59,7 +59,8 @@ To get a local copy up and running follow the instructions below:
 > https://www.docker.com/products/docker-desktop
 
 * Selenoid: 
-> https://aerokube.com/selenoid/latest/
+> https://aerokube.com/selenoid/
+
 > https://aerokube.com/cm/
 
 <!-- Installation -->
@@ -73,6 +74,9 @@ git clone https://github.com/vvarsavv/sdetassessment.git
 ```sh
 npm install
 ```
+* Selenoid installation (OPTIONAL)
+
+
 
 <!-- PROJECT STRUCTURE -->
 ## Project Structure
@@ -167,10 +171,16 @@ Debugging can be performed via the debug script:
 
 Flaky UI Tests:
 
-- Element not appearing after a number of seconds:
- ```
- element ([class="gridCentered"]) still not enabled after 5 sec
- ```
+- Elements not appearing after a number of seconds. The autoDelay plugin was used to minimise such issues.
+
+```
+autoDelay: {
+   enabled: true,
+   delayBefore: 800,
+   delayAfter: 900,
+   methods: ["click", "fillField", "waitForEnabled", "waitForElement", "waitForVisible", "waitForInvisible"]
+   }, 
+```
 
 API calls limit:
 
@@ -183,7 +193,7 @@ API calls limit:
 
 ReCaptcha:
 
-Login caused issues related to login
+A fast login caused ReCaptcha to be shown during tests. The autoDelay plugin was used to minimise issues related to login before each test scenario. 
 
 <!-- LICENSE -->
 ## License
