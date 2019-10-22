@@ -123,8 +123,28 @@ yourLoginDetails.js -> Pinterest user account details are located here.
 
 In order to run tests, first enter your Pinterest account details in the 'yourLoginDetails.js' file.
 
+![Scripts](https://github.com/vvarsavv/sdetassessment/blob/master/helpers/data/image/scripts-package.png "Scripts in package.json")
 
+Boards tests can be launched with the following script:
+```
+npm run boards
+```
 
+Pins test can be launched with the following script:
+ ``` 
+npm run pins
+ ```
+ 
+Boards or pin tests can be launched on Chrome, Firefox or Opera with Selenoid. Selenoid is a modern way to run Selenium inside Docker containers:
+ ```
+npm run selenoid
+ ```
+ 
+Debugging can be performed via the debug script:
+```
+ npm run debug
+ ```
+ 
 <!-- issues -->
 ### Issues during implementation
 
