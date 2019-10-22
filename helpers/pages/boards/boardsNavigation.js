@@ -3,6 +3,10 @@ const {I} = inject();
 
 module.exports = {
 
+    locator: {
+        lblTitle: 'title'
+    },
+
     button: {
         btnBoardsSelection: '$board-selection', //locators by ID are the best locators as its custom made by the QA and devs (it should never change)
         btnSaved: '~Saved',
@@ -33,11 +37,10 @@ module.exports = {
 
     /**
      * grab number of boards from user's profile
-     * @param {String} listOfUserBoards
+     * @return {String} listOfUserBoards
      */
     grabNumberOfBoardsFromUI: async function () {
-
-        const listOfUserBoards = await I.grabAttributeFrom(this.button.btnBoardsTitle, 'title');
+        const listOfUserBoards = await I.grabAttributeFrom(this.button.btnBoardsTitle,  this.locator.lblTitle);
         const grabNumberOfBoardNames = await I.grabNumberOfVisibleElements(this.button.btnBoardsTitle);
         const boardsRandomiser = await I.getRandomNumber(1, grabNumberOfBoardNames);
         const splitString = await I.splitString(listOfUserBoards, ',');
@@ -55,7 +58,7 @@ module.exports = {
     clickOnRandomBoardFromUserProfile: async function () {
         this.clickOnProfileFromUI();
 
-        const listProfileBoards = await I.grabAttributeFrom(this.button.btnUserProfileBoards, 'title');
+        const listProfileBoards = await I.grabAttributeFrom(this.button.btnUserProfileBoards, this.locator.lblTitle);
         const boardsRandomiser = await I.getRandomNumber(1, 2);
         const splitString = await I.splitString(listProfileBoards, ',');
         const filterBoards = await splitString[boardsRandomiser];
@@ -80,4 +83,3 @@ module.exports = {
         return {filterBoardsNameEditWindow: filterBoards}
     },
 };
-//todo readme.md

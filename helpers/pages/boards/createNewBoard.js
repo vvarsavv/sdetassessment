@@ -58,7 +58,7 @@ module.exports = {
     invalidBoardNameDetails: async function () {
         const invalidDetails = await I.generateDetailsForForm();
         await this.addBoardFromMainPageFromUI(invalidDetails.invalidCharacters);
-        I.waitForText(this.formVerification.frmInvalidParameter)
+        I.waitForText(this.formVerification.frmInvalidParameter);
         I.see(this.formVerification.frmInvalidParameter);
         I.clearField(this.form.frmBoardName);
         I.fillField(this.form.frmBoardName, invalidDetails.invalidDescription);
@@ -77,11 +77,15 @@ module.exports = {
         boardsNavigation.assertBoardExistsFromUI(boardName);
     },
 
+    /**
+     * create a board via an api call
+     */
     createBoardViaAPIorUI: async function() {
         const userBoardViaApi = await boardsApiCalls.createUserBoardViaAPI();
 
         if (userBoardViaApi.boardsApiCalls === HttpStatus.TOO_MANY_REQUESTS) {
-            await this.addBoardFromMainPageFromUI();
+            const boardName =  await I.generateDetailsForForm();
+            await this.addBoardFromMainPageFromUI(boardName.titleName);
         }
     }
 };

@@ -93,4 +93,4 @@ typings/
 .idea
 output
 package-lock.json
-yourDetails.js
+yourLoginDetails.js

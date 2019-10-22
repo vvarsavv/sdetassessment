@@ -4,6 +4,9 @@ const {I, pinsNavigation, boardsNavigation, createNewBoard} = inject();
 
 module.exports = {
 
+    locator: {
+        lblDataTestPinID: 'data-test-pin-id'
+    },
     button: {
         btnPin: '$pin',
         btnBoardsSelectionDropdown: '$boardSelectionDropdown',
@@ -18,7 +21,7 @@ module.exports = {
      * Clicks on a random pin from the homepage
      */
     clickRandomPinFromUI: async function () {
-        const pins = await I.grabAttributeFrom(this.button.btnPin, 'data-test-pin-id');
+        const pins = await I.grabAttributeFrom(this.button.btnPin, this.locator.lblDataTestPinID);
         const grabNumberOfPins = await I.grabNumberOfVisibleElements(this.button.btnPin);
         const pinsRandomiser = await I.getRandomNumber(1, grabNumberOfPins);
         const splitSpring = await I.splitString(pins, ',');
@@ -93,7 +96,7 @@ module.exports = {
         const pinsToAdd = 4;
         let start = 0;
 
-        const pins = await I.grabAttributeFrom(this.button.btnPin, 'data-test-pin-id');
+        const pins = await I.grabAttributeFrom(this.button.btnPin, this.locator.lblDataTestPinID);
         const grabNumberOfPins = await I.grabNumberOfVisibleElements(this.button.btnPin);
         const splitSpring = await I.splitString(pins, ',');
 

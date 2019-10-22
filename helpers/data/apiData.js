@@ -1,4 +1,4 @@
-const tokenDetails = require('../../yourDetails');
+const tokenDetails = require('../../yourLoginDetails');
 
 module.exports = {
 

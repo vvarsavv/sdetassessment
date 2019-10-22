@@ -22,7 +22,7 @@ class MyHelper extends Helper {
     /**
      * Generate random number
      * @param {Number} min
-     * @param {Number} max
+     * @param {String} max
      * @return {Number}
      */
     async getRandomNumber(min, max) {

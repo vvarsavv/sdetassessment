@@ -1,4 +1,4 @@
-const yourUserDetails = require('../../yourDetails');
+const yourUserDetails = require('../../yourLoginDetails');
 
 module.exports = {
 
