@@ -103,7 +103,7 @@ Helpers
 * custom_helper -> In myHelpers.js 
 * data -> The data folder holds info related to the Pinterest's URL (domains.js), Pinterest's API URL and boards, pins and sections calls (apiData.js). The user data which is used for logging to Pinterest, and gathered from yourLoginDetails, is located in userData.js    
 * pages──boards -> The boards' page objects are located in this folder. Page objects' methods are separated depending on their use.
-* pages──pins -> The pins' page objects are located in this folder. Each of hte page objects' methods are found here, depending on their use.
+* pages──pins -> The pins' page objects are located in this folder. Each of the page objects' methods are found here, depending on their use.
 
 Profiles -> Profiles are found in webdriver.conf.js. Profile config values related to browsers can be changed on the fly, such as:
 > windowSize: '1920x1080'
