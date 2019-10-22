@@ -1,6 +1,5 @@
 const adBlockPlus = require('adblock-plus-crx');
 
-
 module.exports = {
     profiles : {
         chrome: 'chrome',
@@ -23,7 +22,8 @@ module.exports = {
             "page load": 10000
         },
         chromeOptions: {
-            extensions: adBlockPlus
+            extensions: adBlockPlus,
+            args: '--disable-notifications'
         }
     },
     chromeSelenoid: {
@@ -42,7 +42,8 @@ module.exports = {
             }
         },
         chromeOptions: {
-            extensions: adBlockPlus
+            extensions: adBlockPlus,
+            args: '--disable-notifications'
         }
     },
     firefoxSelenoid: {

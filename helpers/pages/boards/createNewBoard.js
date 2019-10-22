@@ -23,6 +23,7 @@ module.exports = {
 
     /**
      * Add a number of boards and pins to new board
+     * @param {Number} addNumberOfBoards
      */
     addNumberOfBoardsFromUI: async function (addNumberOfBoards) {
         const boardsToAdd = addNumberOfBoards;
@@ -41,7 +42,7 @@ module.exports = {
 
     /**
      * add a board from the main page
-     *
+     * @param {String} boardName
      */
     addBoardFromMainPageFromUI: async function (boardName) {
         I.waitForVisible(this.button.btnProfileActions);
@@ -49,7 +50,7 @@ module.exports = {
         I.click(boardsNavigation.button.btnCreateBoard);
         I.fillField(this.form.frmBoardName, boardName);
         I.click(this.form.frmSubmit);
-        },
+    },
 
     /**
      * enter invalid characters as board name
@@ -57,14 +58,16 @@ module.exports = {
     invalidBoardNameDetails: async function () {
         const invalidDetails = await I.generateDetailsForForm();
         await this.addBoardFromMainPageFromUI(invalidDetails.invalidCharacters);
+        I.waitForText(this.formVerification.frmInvalidParameter)
         I.see(this.formVerification.frmInvalidParameter);
         I.clearField(this.form.frmBoardName);
-        I.fillField(this.form.frmBoardName, invalidDetails.invalidNewTitle);
+        I.fillField(this.form.frmBoardName, invalidDetails.invalidDescription);
         I.see(this.formVerification.frmEnterNoMore);
     },
 
     /**
      * create a new board from selected pin
+     * @param {String} boardName
      */
     createNewBoardFromPinFromUI(boardName) {
         I.waitForElement(this.button.btnCreateBoard);

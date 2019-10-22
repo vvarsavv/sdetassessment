@@ -14,7 +14,7 @@ exports.config = {
     multiple: {
         parallel: {
             chunks: 1,
-            browsers: ["chrome"]
+            browsers: ["chrome", "firefox"]
         }
     },
   plugins: {
@@ -22,12 +22,6 @@ exports.config = {
           enabled: true,
           services: ['selenium-standalone']
     },
-      allure: {
-          enableScreenshotDiffPlugin: true,
-      },
-      screenshotOnFail: {
-          enabled: true
-      },
       autoDelay: {
           enabled: true,
           delayBefore: 800,
@@ -73,8 +67,11 @@ exports.config = {
   bootstrap: null,
   mocha: {
     reporterOptions: {
-      reportDir: './output',
-      reportFilename: 'pinterest sdet assessment'
+        reportDir: './output',
+        reportFilename: 'pinterest SDET Assessment Reporter',
+        enableCharts: true,
+        mochaFile: 'output/result.xml',
+        rootSuiteTitle: 'pinterest UI tests'
     }
   },
   name: 'sdetassessment'

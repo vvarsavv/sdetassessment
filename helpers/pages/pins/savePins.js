@@ -4,18 +4,14 @@ const {I, pinsNavigation, boardsNavigation, createNewBoard} = inject();
 
 module.exports = {
 
-    //aria-labels-locators
-    addPinsEmptyBoard: '~add Pins to empty board modal',
-
     button: {
         btnPin: '$pin',
         btnBoardsSelectionDropdown: '$boardSelectionDropdown',
         btnBoardsSelectionDropdownEditPin: ' [role="button"]:first-child',
         btnEditYourSavedPin: '[aria-label="Edit your previously saved Pin"]',
         btnSaveThisPin: '$edit-pin-save',
-        btnAddPinsEmptyBoard: '~add Pins to empty board modal',
         btnTestPinID: (testPinID) => locate(`[data-test-pin-id*="${testPinID}"]`), // custom locator
-        btnSave: '$SaveButton'
+        btnSavePinToBoard: '$SaveButton'
     },
 
     /**
@@ -54,6 +50,7 @@ module.exports = {
 
     /**
      * Save a pin to a new board
+     * @param {String} boardName
      */
     savePinToNewBoardFromUI: async function (boardName) {
         await this.clickRandomPinFromUI();
@@ -90,7 +87,7 @@ module.exports = {
     },
 
     /**
-     * insert a number of pins to a new board
+     * insert a number of pins to a newly created board
      */
     insertPinsInNewBoard: async function() {
         const pinsToAdd = 4;
@@ -106,10 +103,8 @@ module.exports = {
             const filterPins = await splitSpring[pinsRandomiser];
             I.say(`Pin ID clicked: ${filterPins}`);
             I.moveCursorTo(this.button.btnTestPinID(filterPins));
-            I.scrollTo(this.button.btnTestPinID(filterPins));
-            I.moveCursorTo(this.button.btnSave);
-            I.waitForEnabled(this.button.btnSave);
-            I.click(this.button.btnSave);
+            I.waitForVisible(this.button.btnSavePinToBoard);
+            I.click(this.button.btnSavePinToBoard);
         }
     }
 };
