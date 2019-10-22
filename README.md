@@ -17,12 +17,29 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Pinterest UI tests implementation via the [CodeceptJS framework](https://codecept.io/) which covers functionalities such as:
+Pinterest UI tests implementation via the [CodeceptJS framework](https://codecept.io/) that makes use of features found in the latest version of the framework such as:
+
+* Custom locators - Custom locators can be defined by defining attributes of elements. One such example is the custom locators plugin:
+```
+      customLocator: {
+          enabled: true,
+          showActual: true,
+          attribute: "data-test-id"
+      }
+```
+
+* Selenoid - Selenoid is an implementation of the Selenium hub using Docker containers to launch browsers such as Chrome, Firefox, Opera and Edge/IE. 
+
+* Page objects as classes - Page objects can be declared as classes which can be inherited to other page objects.
+
+In this assessment some of the UI tests covered are:
+
 * Moving pins from one board to another
 * Adding pins to boards
 * Creating new pins
 * Creating new boards
 * Validations of error messages
+
 
 <!-- GETTING STARTED -->
 ## Getting Started
