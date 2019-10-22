@@ -8,6 +8,7 @@
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Project Structure](#project-structure)
+  * [Executing tests](#executing-tests)
   * [Issues during implementation](#issues)
 * [License](#license)
 
@@ -16,14 +17,19 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-
+Pinterest UI tests implementation via the [CodeceptJS framework](https://codecept.io/) which covers functionalities such as:
+* Moving pins from one board to another
+* Adding pins to boards
+* Creating new pins
+* Creating new boards
+* Validations of error messages
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
 To get a local copy up and running follow the instructions below:
 
-<!-- prerequisites -->
+<!-- Prerequisites -->
 ### Prerequisites
 
 * Java: 
@@ -39,7 +45,7 @@ To get a local copy up and running follow the instructions below:
 > https://aerokube.com/selenoid/latest/
 > https://aerokube.com/cm/
 
-
+<!-- Installation -->
 ### Installation
  
 * Clone the repo
@@ -51,11 +57,12 @@ git clone https://github.com/vvarsavv/sdetassessment.git
 npm install
 ```
 
-<! -- PROJECT STRUCTURE -->
+<!-- PROJECT STRUCTURE -->
 ## Project Structure
 ```
+sdetassessment
 │
-├───helpers/
+├───helpers/ 
 │   ├───custom_helper/
 │   │   └───myHelper.js
 │   ├───data/
@@ -92,13 +99,32 @@ npm install
 └───yourLoginDetails.js
 ```
 
-In order to run tests, first enter your Pinterest account details in the 'yourLoginDetails.js' file.
+Helpers
+* custom_helper -> In myHelpers.js 
+* data -> The data folder holds info related to the Pinterest's URL (domains.js), Pinterest's API URL and boards, pins and sections calls (apiData.js). The user data which is used for logging to Pinterest, and gathered from yourLoginDetails, is located in userData.js    
+* pages──boards -> The boards' page objects are located in this folder. Page objects' methods are separated depending on their use.
+* pages──pins -> The pins' page objects are located in this folder. Each of hte page objects' methods are found here, depending on their use.
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Profiles -> Profiles are found in webdriver.conf.js. Profile config values related to browsers can be changed on the fly, such as:
+> windowSize: '1920x1080'
 
+Tests──ui -> Boards and Pins UI tests are located in this folder.
+
+codecept.conf.js -> The project's configuration is set in this file, example: plugins, page object links, and etc.
+
+package.json -> dependencies and scripts are located in this file.
+
+steps_file.js -> login steps are located in this file.
+
+yourLoginDetails -> Pinterest user account details are located here.
+
+<!-- executing-tests -->
 ## Executing tests
 
+In order to run tests, first enter your Pinterest account details in the 'yourLoginDetails.js' file.
 
+
+<!-- issues -->
 ### Issues during implementation
 
 Flaky UI Tests:
