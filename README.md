@@ -4,11 +4,13 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
+ * [UI test coverage](#ui-test-coverage)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
 * [Project Structure](#project-structure)
   * [Executing tests](#executing-tests)
+  * [Reporting](#reporting)
   * [Issues during implementation](#issues-during-implementation)
 
 
@@ -30,8 +32,10 @@ customLocator: {
 
 * Page objects as classes - Page objects can be declared as classes which can be inherited to other page objects.
 
-In this assessment some of the UI tests covered are:
+<!-- UI test coverage --> 
+## UI test coverage
 
+In this assessment some of the UI tests covered are:
 * Moving pins from one board to another
 * Adding pins to boards
 * Creating new pins
@@ -75,7 +79,7 @@ git clone https://github.com/vvarsavv/sdetassessment.git
 ```sh
 npm install
 ```
-* Selenoid installation (OPTIONAL)
+* Selenoid installation
 
 Follow the steps in the following link in order to install Selenoid:
 
@@ -188,7 +192,33 @@ Debugging can be performed via the debug script:
 ```
  npm run debug
  ```
- 
+
+<!-- Reporting -->
+### Reporting
+
+Mochawesome reporter is used to generate an HTML/CSS report to help visualise test runs. In the **output** folder, Mochawesome generates the following files:
+
+```
+output
+├── assets
+│   ├── app.css
+│   ├── app.js
+│   ├── MaterialIcons-Regular.woff
+│   ├── MaterialIcons-Regular.woff2
+│   ├── roboto-light-webfont.woff
+│   ├── roboto-light-webfont.woff2
+│   ├── roboto-medium-webfont.woff
+│   ├── roboto-medium-webfont.woff2
+│   ├── roboto-regular-webfont.woff
+│   └── roboto-regular-webfont.woff2
+├── pinterest SDET Assessment Reporter.html
+└── pinterest SDET Assessment Reporter.json
+```
+
+In order to view the report, launch **pinterest SDET Assessment Reporter.html** in the browser.
+
+Screenshots are also automatically created after a test fails. The screenshots are also created in the **output** folder
+
 <!-- Issues during implementation -->
 ### Issues during implementation
 
