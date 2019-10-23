@@ -4,6 +4,7 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
+ * [UI test coverage](#ui-test-coverage)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
   * [Installation](#installation)
@@ -30,8 +31,10 @@ customLocator: {
 
 * Page objects as classes - Page objects can be declared as classes which can be inherited to other page objects.
 
-In this assessment some of the UI tests covered are:
+<!-- UI test coverage --> 
+## UI test coverage
 
+In this assessment some of the UI tests covered are:
 * Moving pins from one board to another
 * Adding pins to boards
 * Creating new pins
@@ -59,7 +62,7 @@ To get a local copy up and running follow the instructions below:
 * Docker: 
 > https://www.docker.com/products/docker-desktop
 
-* Selenoid (OPTIONAL): 
+* Selenoid: 
 > https://aerokube.com/selenoid/
 
 > https://aerokube.com/cm/
@@ -75,7 +78,7 @@ git clone https://github.com/vvarsavv/sdetassessment.git
 ```sh
 npm install
 ```
-* Selenoid installation (OPTIONAL)
+* Selenoid installation
 
 Follow the steps in the following link in order to install Selenoid:
 
