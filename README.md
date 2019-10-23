@@ -79,6 +79,17 @@ npm install
 ```
 * Selenoid installation (OPTIONAL)
 
+Follow the steps in the following link in order to install Selenoid:
+
+1.) Start Selenoid: https://aerokube.com/selenoid/latest/#_start_selenoid
+
+2.) Prepare browser configurations: https://aerokube.com/selenoid/latest/#_prepare_configuration
+
+3.) Download the browser images: https://aerokube.com/selenoid/latest/#_browser_images
+
+4.) Configuration manager (optional): https://aerokube.com/cm/latest/#_quick_start_guide
+
+5.) Start GUI (optional): https://aerokube.com/cm/latest/#_starting_selenoid_ui
 
 
 <!-- PROJECT STRUCTURE -->
@@ -124,7 +135,7 @@ sdetassessment
 ```
 
 Helpers
-* custom_helper -> In myHelpers.js 
+* custom_helper -> In myHelper.js methods are set with libraries (casual, coolImages, sentencer and chai), and inhereted throughout the tests. An example is: generateDetailsForForm - This method is used to generate valid and invalid details via causal and sentence libraries for pin and board generation forms. 
 * data -> The data folder holds info related to the Pinterest's URL (domains.js), Pinterest's API URL and boards, pins and sections calls (apiData.js). The user data which is used for logging to Pinterest, and gathered from yourLoginDetails, is located in userData.js    
 * pages──boards -> The boards' page objects are located in this folder. Page objects' methods are separated depending on their use.
 * pages──pins -> The pins' page objects are located in this folder. Each of the page objects' methods are found here, depending on their use.
@@ -138,7 +149,7 @@ codecept.conf.js -> The project's configuration is set in this file, example: pl
 
 package.json -> dependencies and scripts are located in this file.
 
-steps_file.js -> login steps are located in this file.
+steps_file.js -> Login steps are located in this file. These steps are used by the autoLogin plugin.
 
 yourLoginDetails.js -> Pinterest user account details are located here.
 
@@ -207,7 +218,7 @@ API calls limit:
 
 ReCaptcha:
 
-A fast login caused ReCaptcha to be shown during tests. The autoDelay plugin was used to minimise issues related to login before each test scenario. 
+A fast login caused ReCaptcha to be shown during tests. The autoDelay plugin was used to minimise issues related to login before test scenarios. 
 
 <!-- LICENSE -->
 ## License
