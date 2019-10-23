@@ -9,7 +9,7 @@
   * [Installation](#installation)
 * [Project Structure](#project-structure)
   * [Executing tests](#executing-tests)
-  * [Issues during implementation](#issues)
+  * [Issues during implementation](#issues-during-implementation)
 
 
 <!-- ABOUT THE PROJECT -->
