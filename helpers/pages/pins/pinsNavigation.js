@@ -23,7 +23,7 @@ module.exports = {
 
     form: {
         frmTitle: '[id="TitleField"]',
-        frmDescription: '[id="DescriptionField]'
+        frmDescription: '[id="DescriptionField"]'
     },
 
     formValidation: {

@@ -90,7 +90,7 @@ module.exports = {
      * insert a number of pins to a newly created board
      */
     insertPinsInNewBoard: async function() {
-        const pinsToAdd = 4;
+        const pinsToAdd = 3;
         let start = 0;
 
         const pins = await I.grabAttributeFrom(this.button.btnPin, 'data-test-pin-id');
@@ -103,7 +103,9 @@ module.exports = {
             const filterPins = await splitSpring[pinsRandomiser];
             I.say(`Pin ID clicked: ${filterPins}`);
             I.moveCursorTo(this.button.btnTestPinID(filterPins));
-            I.waitForVisible(this.button.btnSavePinToBoard);
+            I.scrollTo(this.button.btnTestPinID(filterPins));
+            I.moveCursorTo(this.button.btnSavePinToBoard);
+            I.waitForEnabled(this.button.btnSavePinToBoard);
             I.click(this.button.btnSavePinToBoard);
         }
     }

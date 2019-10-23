@@ -27,7 +27,7 @@ module.exports = {
      * @param {String} boardName
      */
     assertBoardExistsFromUI(boardName) {
-        I.waitForText(boardName);
+        I.waitForText(boardName, 5);
         I.see(boardName);
     },
 
