@@ -10,8 +10,6 @@
 * [Project Structure](#project-structure)
   * [Executing tests](#executing-tests)
   * [Issues during implementation](#issues)
-* [License](#license)
-
 
 
 <!-- ABOUT THE PROJECT -->
@@ -191,7 +189,7 @@ Debugging can be performed via the debug script:
  npm run debug
  ```
  
-<!-- issues -->
+<!-- Issues during implementation -->
 ### Issues during implementation
 
 Flaky UI Tests:
@@ -219,8 +217,3 @@ API calls limit:
 ReCaptcha:
 
 A fast login caused ReCaptcha to be shown during tests. The autoDelay plugin was used to minimise issues related to login before test scenarios. 
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License.
