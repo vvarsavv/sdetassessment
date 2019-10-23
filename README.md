@@ -59,7 +59,7 @@ To get a local copy up and running follow the instructions below:
 * Docker: 
 > https://www.docker.com/products/docker-desktop
 
-* Selenoid: 
+* Selenoid (OPTIONAL): 
 > https://aerokube.com/selenoid/
 
 > https://aerokube.com/cm/
