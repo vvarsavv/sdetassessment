@@ -165,7 +165,7 @@ yourUsername: '<username>',
 yourPassword: '<password>',
 yourName: '<name>',
 yourSurname: '<surname>',
-yourProfileURL: '<profileURL>',
+yourProfileURL: '<profileURL>', (example: agiusk3234 -> https://www.pinterest.com/agiusk3234/)
 
 apiToken: '<apiToken>' (optional - requires a Pinterest APP)
 ```
