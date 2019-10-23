@@ -1,5 +1,4 @@
 const webDriverConfig = require('./profiles/webdriver.conf'); // reading selenium config from separate file
-const domains = require('./helpers/data/domains');
 
 exports.config = {
   tests: './*/*/*_tests.js',

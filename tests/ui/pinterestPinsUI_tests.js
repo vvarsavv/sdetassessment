@@ -6,7 +6,8 @@ BeforeSuite(async function (I, domains, login) {
 });
 
 Scenario('Pins tests: save a number of pins to a random board', async function  (I, savePins) {
-    await savePins.addNumberOfPinsFromUI(2);
+    const numberOfBoardsToBeAdded = 2;
+    await savePins.addNumberOfPinsFromUI(numberOfBoardsToBeAdded);
 }).tag('@pins-ui-tests');
 
 Scenario('Pins tests: save a pin to a new board', async function  (I, savePins) {

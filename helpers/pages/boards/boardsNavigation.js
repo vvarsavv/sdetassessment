@@ -4,7 +4,7 @@ const {I} = inject();
 module.exports = {
 
     button: {
-        btnBoardsSelection: '$board-selection', //locators by ID are the best locators as its custom made by the QA and devs (it should never change)
+        btnBoardsSelection: '$board-selection',
         btnSaved: '~Saved',
         btnBoardTitle: (title) => `[title="${title}"]`,
         btnCreateBoard: '[title*="Create board"]',
@@ -54,7 +54,7 @@ module.exports = {
     clickOnRandomBoardFromUserProfile: async function () {
         this.clickOnProfileFromUI();
 
-        const listProfileBoards = await I.grabAttributeFrom(this.button.btnUserProfileBoards, this.locator.lblTitle);
+        const listProfileBoards = await I.grabAttributeFrom(this.button.btnUserProfileBoards, 'title');
         const boardsRandomiser = await I.getRandomNumber(1, 2);
         const splitString = await I.splitString(listProfileBoards, ',');
         const filterBoards = await splitString[boardsRandomiser];

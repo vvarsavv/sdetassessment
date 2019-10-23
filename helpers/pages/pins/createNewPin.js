@@ -109,6 +109,7 @@ class EnterNewPin {
 
     /**
      * save details of a new pin
+     * @param {String} boardName
      */
     async saveDetailsOfNewPin(boardName) {
         I.waitForEnabled(this.button.btnBoardDropDownSave);
