@@ -198,6 +198,7 @@ Debugging can be performed via the debug script:
 
 Mochawesome reporter is used to generate an HTML/CSS report to help visualise test runs. In the **output** folder, Mochawesome generates the following files:
 
+```
 output
 ├── assets
 │   ├── app.css
@@ -212,6 +213,7 @@ output
 │   └── roboto-regular-webfont.woff2
 ├── pinterest SDET Assessment Reporter.html
 └── pinterest SDET Assessment Reporter.json
+```
 
 In order to view the report, launch **pinterest SDET Assessment Reporter.html** in the browser.
 
