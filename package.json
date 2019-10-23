@@ -7,7 +7,7 @@
     "url": "git+https://github.com/vvarsavv/sdetassessment.git"
   },
   "scripts": {
-    "boards": "profile=chrome codeceptjs run --reporter mochawesome && --grep @boards-ui-tests",
+    "boards": "profile=chrome codeceptjs run --reporter mochawesome --grep @boards-ui-tests",
     "pins": "profile=chrome codeceptjs run --reporter mochawesome --grep @pins-ui-tests",
     "selenoid": "profile=operaSelenoid codeceptjs run --reporter mochawesome --grep @boards-ui-tests",
     "debug": "profile=chrome codeceptjs run --steps --verbose --grep @pins-ui-tests"
