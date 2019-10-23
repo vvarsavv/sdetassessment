@@ -10,6 +10,7 @@
   * [Installation](#installation)
 * [Project Structure](#project-structure)
   * [Executing tests](#executing-tests)
+  * [Reporting](#reporting)
   * [Issues during implementation](#issues-during-implementation)
 
 
@@ -191,7 +192,31 @@ Debugging can be performed via the debug script:
 ```
  npm run debug
  ```
- 
+
+<!-- Reporting -->
+### Reporting
+
+Mochawesome reporter is used to generate an HTML/CSS report to help visualise test runs. In the **output** folder, Mochawesome generates the following files:
+
+output
+├── assets
+│   ├── app.css
+│   ├── app.js
+│   ├── MaterialIcons-Regular.woff
+│   ├── MaterialIcons-Regular.woff2
+│   ├── roboto-light-webfont.woff
+│   ├── roboto-light-webfont.woff2
+│   ├── roboto-medium-webfont.woff
+│   ├── roboto-medium-webfont.woff2
+│   ├── roboto-regular-webfont.woff
+│   └── roboto-regular-webfont.woff2
+├── pinterest SDET Assessment Reporter.html
+└── pinterest SDET Assessment Reporter.json
+
+In order to view the report, launch **pinterest SDET Assessment Reporter.html** in the browser.
+
+Screenshots are also automatically created after a test fails. The screenshots are also created in the **output** folder
+
 <!-- Issues during implementation -->
 ### Issues during implementation
 
