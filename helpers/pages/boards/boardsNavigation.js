@@ -3,10 +3,6 @@ const {I} = inject();
 
 module.exports = {
 
-    locator: {
-        lblTitle: 'title'
-    },
-
     button: {
         btnBoardsSelection: '$board-selection', //locators by ID are the best locators as its custom made by the QA and devs (it should never change)
         btnSaved: '~Saved',

@@ -4,9 +4,6 @@ const {I, pinsNavigation, boardsNavigation, createNewBoard} = inject();
 
 module.exports = {
 
-    locator: {
-        lblDataTestPinID: 'data-test-pin-id'
-    },
     button: {
         btnPin: '$pin',
         btnBoardsSelectionDropdown: '$boardSelectionDropdown',
